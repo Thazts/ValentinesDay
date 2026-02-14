@@ -1,0 +1,322 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+body {
+    background-color: #f5f5f7;
+    overflow-x: hidden;
+}
+:root {
+    --opening-duration: 4s;
+    --opening-easing: cubic-bezier(0.85, 0, 0.15, 1);
+}
+.opening-stage {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    pointer-events: none;
+    animation: stageLift var(--opening-duration) var(--opening-easing) forwards;
+}
+.intro-overlay {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    pointer-events: none;
+}
+.logo-reveal {
+    position: absolute;
+    top: 20vh;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    background: #fff;
+    border-radius: 12px;
+    transform-origin: top;
+    transform: translateX(-50%) scale(0.5);
+    z-index: 101;
+    animation: squareElastic var(--opening-duration) var(--opening-easing) forwards;
+}
+@keyframes squareElastic {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) scale(0.5);
+    }
+    15% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+    }
+    20% {
+        transform: translateX(-50%) scaleY(1);
+    }
+    70% {
+        transform: translateX(-50%) scaleY(8);
+    }
+    85% {
+        transform: translateX(-50%) scaleY(0.85);
+    }
+    100% {
+        transform: translateX(-50%) scaleY(1);
+    }
+}
+@keyframes stageLift {
+    0%, 55% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100vh);
+    }
+}
+@keyframes bounceIn {
+    0% {
+        opacity: 1;
+        transform: scale(0.3) translateY(20px);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+.main-content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: contentOpen var(--opening-duration) var(--opening-easing) forwards;
+}
+
+
+
+@keyframes contentOpen {
+    0%, 70% {
+        opacity: 0;
+        transform: translateY(200px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: #1d1d1f;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.9s forwards;
+    transition: text-shadow 0.3s ease;
+}
+
+.hero h1:hover {
+    text-shadow: 0 0 30px rgba(29, 29, 31, 0.5);
+}
+
+.hero h1 .letter:hover {
+    transform: scale(1.2);
+    display: inline-block;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #000;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    color: #86868b;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 3s forwards;
+    transition: text-shadow 0.3s ease;
+}
+
+.hero p:hover {
+    text-shadow: 0 0 25px rgba(134, 134, 139, 0.5);
+}
+
+.hero p .letter:hover {
+    transform: scale(1.15);
+    display: inline-block;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #1d1d1f;
+}
+
+.letter {
+    display: inline-block;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 100px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 2.8s forwards;
+}
+
+.logo {
+    transition: text-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.logo:hover {
+    text-shadow: 0 0 25px rgba(29, 29, 31, 0.5);
+}
+
+.logo .letter:hover {
+    transform: scale(1.2);
+    display: inline-block;
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #000;
+}
+
+ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+ul li button {
+    background: none;
+    border: none;
+    color: #1d1d1f;
+    font: inherit;
+    cursor: pointer;
+    display: inline-block;
+    transform: scale(1);
+    transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                color 0.15s ease-in-out;
+}
+ul li button:hover {
+    transform: scale(1.15);
+    color: #000;
+}
+ul li button:active {
+    transform: scale(0.95);
+    color: #1d1d1f;
+}
+.nav-btn.animate-in {
+    animation: bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+.nav-btn.click-bounce {
+    animation: clickBounce 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes clickBounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+
+
+ul li button:active {
+    transform: scale(0.95);
+    color: #1d1d1f;
+}
+
+
+
+
+#animation-container {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 750px;
+    height: auto;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 50;
+}
+
+#animation-container img,
+#animation-container video {
+    max-width: 100%;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.image-enter {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+    animation: imageEnter 1s forwards;
+}
+
+@keyframes imageEnter {
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.heart-pop {
+    position: absolute;
+    font-size: 80px;
+    line-height: 1;
+    opacity: 0;
+    animation: heartPop 0.8s ease-out forwards;
+}
+
+@keyframes heartPop {
+    0% { 
+        transform: scale(0); 
+        opacity: 0; 
+    }
+    40% { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+    50% { 
+        transform: scale(1) rotate(-2deg);
+    }
+    60% { 
+        transform: scale(1) rotate(2deg);
+    }
+    70% { 
+        transform: scale(1) rotate(-2deg);
+    }
+    80% { 
+        transform: scale(1) rotate(2deg);
+    }
+    90% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+    100% { 
+        transform: scale(1) rotate(0deg);
+        opacity: 1; 
+    }
+}
+
+.confetti {
+    position: absolute;
+    pointer-events: none;
+    font-size: 20px;
+}
+
+@keyframes confettiFall {
+    to {
+        transform: translateY(500px) rotateZ(360deg);
+        opacity: 0;
+    }
+}
+
+.image-exit {
+    animation: imageExit 1s forwards;
+}
+
+@keyframes imageExit {
+    to {
+        opacity: 0;
+        transform: scale(0.8) translateY(-50px);
+    }
+}
